@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Travel.Models.TbMenu>
+
+@foreach (var item in Model.Where(i => i.Levels == 1))
+{
+    <li class="drop-holder">
+        <a href="/@item.Alias">
+            @item.Title
+        </a>
+    </li>
+}
