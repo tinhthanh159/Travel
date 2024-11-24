@@ -1,0 +1,16 @@
+﻿@model  IEnumerable<Travel.Models.TbTourGuide>
+
+@foreach(var item in Model) {
+
+<div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+    <div class="team-list rounded">
+        <div class="team-image">
+            <img src="@item.Image" alt="team">
+        </div>
+        <div class="team-content text-center p-3 bg-theme">
+            <h4 class="mb-0 white">@item.FullName</h4>
+            <p class="mb-0 white">@item.Description</p>
+        </div>
+    </div>
+</div>
+}

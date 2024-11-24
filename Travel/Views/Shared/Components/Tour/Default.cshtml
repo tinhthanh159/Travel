@@ -1,0 +1,46 @@
+﻿@model  IEnumerable<Travel.Models.TbTour>
+
+@foreach(var item in Model) {
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-4">
+                    <div class="trend-item rounded box-shadow bg-white">
+                        <div class="trend-image position-relative">
+                            <img src="@item.Image" alt="image" class="">
+                            <div class="ribbon ribbon-top-left"><span class="fw-bold">@item.PriceSale</span></div>
+                            <div class="color-overlay"></div>
+                        </div>
+                        <div class="trend-content p-4 pt-5 position-relative">
+                            <div class="trend-meta bg-theme white px-3 py-2 rounded">
+                                <div class="entry-author">
+                                    <i class="icon-calendar"></i>
+                                    <span class="fw-bold"> @item.TourDuration</span>
+                                </div>
+                            </div>
+                            <h5 class="theme mb-1"><i class="flaticon-location-pin"></i> @item.Country</h5>
+                            <h3 class="mb-1"><a href="tour-grid.html">@item.Destination</a></h3>
+                            <div class="rating-main d-flex align-items-center pb-2">
+                            <div class="rating">
+                                <ul>
+                                    @for (var i = 0; i < item.Star; i++)
+                                    {
+                                    <li><i class="fa fa-star checked theme1 mb-1"></i></li>
+                                    }
+                                </ul>
+                            </div>
+                                <span class="ms-2">(@item.Assess)</span>
+                            </div>
+                            <p class=" border-b pb-2 mb-2">
+                                @item.Description
+                            </p>
+                            <div class="entry-meta">
+                                <div class="entry-author d-flex align-items-center">
+                                    <p class="mb-0">
+                                        <span class="theme fw-bold fs-5"> $@item.Price</span> | 1 người
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>               
+ 
+}
+

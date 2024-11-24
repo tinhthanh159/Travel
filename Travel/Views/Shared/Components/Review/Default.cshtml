@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Travel.Models.TbTourComment>
+
+@foreach (var item in Model)
+{
+<div class="col-sm-4 item">
+    <div class="testimonial-item1 rounded">
+        <div class="author-info d-flex align-items-center mb-4">
+            <img src="@item.Image" alt="Load!">
+            <div class="author-title ms-3">
+                <h5 class="m-0 theme">@item.Name</h5>
+                <span>@item.Email</span>
+            </div>
+        </div>
+        <div class="details">
+            <p class="m-0">
+                <i class="fa fa-quote-left me-2 fs-1"></i>@item.Detail
+            </p>
+        </div>
+    </div>
+</div>
+}

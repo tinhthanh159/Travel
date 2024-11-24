@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Travel.Models.TbTour>
+
+
+<div class="row align-items-center">
+    <div class="col-lg-5 mb-4">
+        <div class="trend-item1">
+            @{
+                var x = Model.Where(t => t.IsBestTour == true).FirstOrDefault();
+            }
+            <div class="trend-image position-relative rounded">
+                <img src="@x.Image" alt="image">
+                <div class="trend-content d-flex align-items-center justify-content-between position-absolute bottom-0 p-4 w-100 z-index">
+                    <div class="trend-content-title">
+                        <h5 class="mb-0"><a href="tour-grid.html" class="theme1">@x.Country</a></h5>
+                        <h3 class="mb-0 white">@x.Description</h3>
+                    </div>
+                    <span class="white bg-theme p-1 px-2 rounded">@x.TourDuration</span>
+                </div>
+                <div class="color-overlay"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-7">
+        <div class="row">
+            @foreach (var item in Model.Where(t => t.IsBestTour == false).Take(4))
+            {
+                <div class="col-lg-6 col-md-6 col-sm-6 mb-4">
+                    <div class="trend-item1">
+                        <div class="trend-image position-relative rounded">
+                            <img src="@item.Image" alt="image">
+                            <div class="trend-content d-flex align-items-center justify-content-between position-absolute bottom-0 p-4 w-100 z-index">
+                                <div class="trend-content-title">
+                                    <h5 class="mb-0">
+                                        <a href="tour-grid.html" class="theme1">@item.Country</a>
+                                    </h5>
+                                    <h3 class="mb-0 white">@item.Destination</h3>
+                                </div>
+                                <span class="white bg-theme p-1 px-2 rounded">@item.TourDuration</span>
+                            </div>
+                            <div class="color-overlay"></div>
+                        </div>
+                    </div>
+                </div>
+            }
+            
+          
+        </div>
+    </div>
+
+</div>
