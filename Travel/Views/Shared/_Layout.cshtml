@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
 
     <link rel="stylesheet" href="~/assets/fonts/line-icons.css" type="text/css">
+    <link href="~/assets/toastr/toastr.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -437,6 +439,10 @@
     <script src="~/assets/js/main.js"></script>
     <script src="~/assets/js/custom-swiper.js"></script>
     <script src="~/assets/js/custom-nav.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    @*RenderSection("Scripts", required: true)*@
+    @RenderSection("Scripts", required: false)
 </body>
 
 </html>

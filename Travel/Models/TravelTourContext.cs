@@ -17,6 +17,10 @@ public partial class TravelTourContext : DbContext
 
     public virtual DbSet<TbAccount> TbAccounts { get; set; }
 
+    public virtual DbSet<TbBlog> TbBlogs { get; set; }
+
+    public virtual DbSet<TbBlogComment> TbBlogComments { get; set; }
+
     public virtual DbSet<TbBooking> TbBookings { get; set; }
 
     public virtual DbSet<TbBookingDetail> TbBookingDetails { get; set; }
@@ -37,7 +41,10 @@ public partial class TravelTourContext : DbContext
 
     public virtual DbSet<TbTourDetail> TbTourDetails { get; set; }
 
+    public virtual DbSet<TbTourGuide> TbTourGuides { get; set; }
+
     public virtual DbSet<TbTourType> TbTourTypes { get; set; }
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -59,6 +66,47 @@ public partial class TravelTourContext : DbContext
             entity.HasOne(d => d.Role).WithMany(p => p.TbAccounts)
                 .HasForeignKey(d => d.RoleId)
                 .HasConstraintName("FK_tb_Account_tb_Role");
+        });
+
+        modelBuilder.Entity<TbBlog>(entity =>
+        {
+            entity.HasKey(e => e.BlogId);
+
+            entity.ToTable("tb_Blog");
+
+            entity.Property(e => e.Alias).HasMaxLength(250);
+            entity.Property(e => e.CreatedBy).HasMaxLength(150);
+            entity.Property(e => e.CreatedDate).HasColumnType("datetime");
+            entity.Property(e => e.Description).HasMaxLength(4000);
+            entity.Property(e => e.Image).HasMaxLength(500);
+            entity.Property(e => e.ModifiedBy).HasMaxLength(150);
+            entity.Property(e => e.ModifiedDate).HasColumnType("datetime");
+            entity.Property(e => e.SeoDescription).HasMaxLength(500);
+            entity.Property(e => e.SeoKeywords).HasMaxLength(250);
+            entity.Property(e => e.SeoTitle).HasMaxLength(250);
+            entity.Property(e => e.Title).HasMaxLength(250);
+            entity.Property(e => e.Topic).HasMaxLength(50);
+
+            entity.HasOne(d => d.Account).WithMany(p => p.TbBlogs)
+                .HasForeignKey(d => d.AccountId)
+                .HasConstraintName("FK_tb_Blog_tb_Account");
+        });
+
+        modelBuilder.Entity<TbBlogComment>(entity =>
+        {
+            entity.HasKey(e => e.CommentId);
+
+            entity.ToTable("tb_BlogComment");
+
+            entity.Property(e => e.CreatedDate).HasColumnType("datetime");
+            entity.Property(e => e.Detail).HasMaxLength(200);
+            entity.Property(e => e.Email).HasMaxLength(50);
+            entity.Property(e => e.Name).HasMaxLength(50);
+            entity.Property(e => e.Phone).HasMaxLength(50);
+
+            entity.HasOne(d => d.Blog).WithMany(p => p.TbBlogComments)
+                .HasForeignKey(d => d.BlogId)
+                .HasConstraintName("FK_tb_BlogComment_tb_Blog");
         });
 
         modelBuilder.Entity<TbBooking>(entity =>
@@ -176,11 +224,13 @@ public partial class TravelTourContext : DbContext
             entity.ToTable("tb_Tour");
 
             entity.Property(e => e.AccountId).HasColumnName("AccountID");
-            entity.Property(e => e.DepartureDate).HasColumnType("datetime");
-            entity.Property(e => e.DeparturePoint).HasMaxLength(500);
+            entity.Property(e => e.Country).HasMaxLength(100);
             entity.Property(e => e.Description).HasMaxLength(1000);
+            entity.Property(e => e.Destination).HasMaxLength(500);
             entity.Property(e => e.Image).HasMaxLength(500);
             entity.Property(e => e.Introduce).HasMaxLength(500);
+            entity.Property(e => e.PriceSale).HasMaxLength(50);
+            entity.Property(e => e.TourDuration).HasMaxLength(100);
             entity.Property(e => e.TourName).HasMaxLength(100);
 
             entity.HasOne(d => d.Account).WithMany(p => p.TbTours)
@@ -203,6 +253,7 @@ public partial class TravelTourContext : DbContext
             entity.Property(e => e.CreatedDate).HasColumnType("datetime");
             entity.Property(e => e.Detail).HasMaxLength(200);
             entity.Property(e => e.Email).HasMaxLength(50);
+            entity.Property(e => e.Image).HasMaxLength(150);
             entity.Property(e => e.Name).HasMaxLength(50);
             entity.Property(e => e.Phone).HasMaxLength(50);
 
@@ -229,12 +280,34 @@ public partial class TravelTourContext : DbContext
                 .HasConstraintName("FK_tb_BookingDetail_tb_Tour");
         });
 
+        modelBuilder.Entity<TbTourGuide>(entity =>
+        {
+            entity.HasKey(e => e.GuideId).HasName("PK__tb_TourG__E77EE05EE83903E2");
+
+            entity.ToTable("tb_TourGuide");
+
+            entity.Property(e => e.Description).HasMaxLength(500);
+            entity.Property(e => e.Email).HasMaxLength(100);
+            entity.Property(e => e.FullName).HasMaxLength(100);
+            entity.Property(e => e.Image).HasMaxLength(300);
+            entity.Property(e => e.IsActive).HasDefaultValue(true);
+            entity.Property(e => e.LanguageSkills).HasMaxLength(200);
+            entity.Property(e => e.Phone).HasMaxLength(15);
+        });
+
         modelBuilder.Entity<TbTourType>(entity =>
         {
             entity.HasKey(e => e.TypeId);
 
             entity.ToTable("tb_TourType");
 
+            entity.Property(e => e.Alias).HasMaxLength(150);
+            entity.Property(e => e.CreatedBy).HasMaxLength(150);
+            entity.Property(e => e.CreatedDate).HasColumnType("datetime");
+            entity.Property(e => e.Description).HasMaxLength(500);
+            entity.Property(e => e.Icon).HasMaxLength(500);
+            entity.Property(e => e.ModifiedBy).HasMaxLength(150);
+            entity.Property(e => e.ModifiedDate).HasColumnType("datetime");
             entity.Property(e => e.TypeName).HasMaxLength(50);
         });
 

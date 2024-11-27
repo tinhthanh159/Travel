@@ -3,11 +3,9 @@ using System.Collections.Generic;
 
 namespace Travel.Models;
 
-public partial class TbTourComment
+public partial class TbBlogComment
 {
     public int CommentId { get; set; }
-
-    public int TourId { get; set; }
 
     public string? Name { get; set; }
 
@@ -15,13 +13,13 @@ public partial class TbTourComment
 
     public string? Email { get; set; }
 
-    public string? Image { get; set; }
-
     public DateTime? CreatedDate { get; set; }
 
     public string? Detail { get; set; }
 
+    public int? BlogId { get; set; }
+
     public bool IsActive { get; set; }
 
-    public virtual TbTour Tour { get; set; } = null!;
+    public virtual TbBlog? Blog { get; set; }
 }

@@ -15,17 +15,31 @@ public partial class TbTour
 
     public int? Price { get; set; }
 
+    public string? PriceSale { get; set; }
+
     public string? Description { get; set; }
 
     public string? Image { get; set; }
 
-    public DateTime? DepartureDate { get; set; }
+    public string? Destination { get; set; }
 
-    public string? DeparturePoint { get; set; }
+    public bool? TopDestination { get; set; }
 
     public int? AccountId { get; set; }
 
+    public bool? IsBestTour { get; set; }
+
+    public bool? IsNew { get; set; }
+
+    public string? Country { get; set; }
+
+    public string? TourDuration { get; set; }
+
+    public int? Assess { get; set; }
+
     public bool IsActive { get; set; }
+
+    public int? Star { get; set; }
 
     public virtual TbAccount? Account { get; set; }
 

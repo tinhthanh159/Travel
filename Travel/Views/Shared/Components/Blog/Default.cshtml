@@ -1,0 +1,33 @@
+﻿@model  IEnumerable<Travel.Models.TbBlog>
+
+@foreach(var item in Model) {
+        <div class="col-lg-4">
+        <div class="trend-item box-shadow bg-white mb-4 rounded overflow-hidden">
+            <div class="trend-image">
+                <img src="@item.Image" alt="image">
+            </div>
+            <div class="trend-content-main p-4 pb-2">
+                <div class="trend-content">
+                    <h5 class="theme mb-1">@item.Topic</h5>
+                    <h4>
+                        <a href="detail-1.html">
+                            @item.Title
+                        </a>
+                    </h4>
+                    <p class="mb-3">
+                        @item.Description
+                    </p>
+                    <div class="entry-meta d-flex align-items-center justify-content-between">
+                        <div class="entry-author mb-2">
+                            <img src="~/assets/images/reviewer/2.jpg" alt="" class="rounded-circle me-1">
+                            <span>@item.CreatedBy</span>
+                        </div>
+                        <div class="entry-button d-flex align-items-centermb-2">
+                            <a href="#" class="nir-btn">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
