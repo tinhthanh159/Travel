@@ -43,6 +43,8 @@ public partial class TbTour
 
     public virtual TbAccount? Account { get; set; }
 
+    public virtual ICollection<TbDestination> TbDestinations { get; set; } = new List<TbDestination>();
+
     public virtual ICollection<TbTourComment> TbTourComments { get; set; } = new List<TbTourComment>();
 
     public virtual ICollection<TbTourDetail> TbTourDetails { get; set; } = new List<TbTourDetail>();

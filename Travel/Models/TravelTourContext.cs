@@ -29,6 +29,8 @@ public partial class TravelTourContext : DbContext
 
     public virtual DbSet<TbContact> TbContacts { get; set; }
 
+    public virtual DbSet<TbDestination> TbDestinations { get; set; }
+
     public virtual DbSet<TbMenu> TbMenus { get; set; }
 
     public virtual DbSet<TbNews> TbNews { get; set; }
@@ -44,7 +46,6 @@ public partial class TravelTourContext : DbContext
     public virtual DbSet<TbTourGuide> TbTourGuides { get; set; }
 
     public virtual DbSet<TbTourType> TbTourTypes { get; set; }
-
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -167,6 +168,33 @@ public partial class TravelTourContext : DbContext
             entity.Property(e => e.ModifiedDate).HasColumnType("datetime");
             entity.Property(e => e.Name).HasMaxLength(150);
             entity.Property(e => e.Phone).HasMaxLength(50);
+        });
+
+        modelBuilder.Entity<TbDestination>(entity =>
+        {
+            entity.HasKey(e => e.DestinationId).HasName("PK__tb_Descr__A58A9FEBC48FC183");
+
+            entity.ToTable("tb_Destination");
+
+            entity.Property(e => e.DestinationId).HasColumnName("DestinationID");
+            entity.Property(e => e.Country).HasMaxLength(150);
+            entity.Property(e => e.CreatedBy).HasMaxLength(150);
+            entity.Property(e => e.CreatedDate)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.Description).HasMaxLength(500);
+            entity.Property(e => e.Destination).HasMaxLength(150);
+            entity.Property(e => e.Image).HasMaxLength(150);
+            entity.Property(e => e.IsActive).HasDefaultValue(true);
+            entity.Property(e => e.ModifiedBy).HasMaxLength(150);
+            entity.Property(e => e.ModifiedDate).HasColumnType("datetime");
+            entity.Property(e => e.NumberTour).HasMaxLength(50);
+            entity.Property(e => e.TourId).HasColumnName("TourID");
+
+            entity.HasOne(d => d.Tour).WithMany(p => p.TbDestinations)
+                .HasForeignKey(d => d.TourId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__tb_Descri__TourI__30C33EC3");
         });
 
         modelBuilder.Entity<TbMenu>(entity =>
