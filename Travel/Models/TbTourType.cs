@@ -7,7 +7,7 @@ public partial class TbTourType
 {
     public int TypeId { get; set; }
 
-    public string? TypeName { get; set; }
+    public string? Title { get; set; }
 
     public string? Alias { get; set; }
 

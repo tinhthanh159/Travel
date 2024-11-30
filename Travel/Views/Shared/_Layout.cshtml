@@ -95,8 +95,8 @@
     @RenderBody()
 
     <!-- footer starts -->
-    <footer class="pt-20 pb-4" style="background-image: url(~/assets/images/background_pattern.png);">
-        <div class="section-shape top-0" style="background-image: url(~/assets/images/shape8.png);"></div>
+    <footer class="pt-20 pb-4" style="background-image: url('@Url.Content("~/assets/images/background_pattern.png")');">
+        <div class="section-shape top-0" style="background-image: url('@Url.Content("~/assets/images/shape8.png")');"></div>
         <!-- Instagram starts -->
         <div class="insta-main pb-10">
             <div class="container">
@@ -324,7 +324,7 @@
                                     <div class="col-lg-6">
                                         <div class="blog-image rounded">
                                             <a href="#"
-                                               style="background-image: url(~/assets/images/trending/trending5.jpg);"></a>
+                                               style="background-image: url('@Url.Content("~/assets/images/trending/trending5.jpg")');"></a>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
@@ -372,7 +372,7 @@
                                     <div class="col-lg-6">
                                         <div class="blog-image rounded">
                                             <a href="#"
-                                               style="background-image: url(~/assets/images/trending/trending5.jpg);"></a>
+                                               style="background-image: url('@Url.Content("~/assets/images/trending/trending5.jpg")');"></a>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
@@ -439,6 +439,7 @@
     <script src="~/assets/js/main.js"></script>
     <script src="~/assets/js/custom-swiper.js"></script>
     <script src="~/assets/js/custom-nav.js"></script>
+     <script src="~/assets/js/custom-accordian.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     @*RenderSection("Scripts", required: true)*@

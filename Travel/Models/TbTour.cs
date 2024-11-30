@@ -9,9 +9,11 @@ public partial class TbTour
 
     public int TypeId { get; set; }
 
-    public string? TourName { get; set; }
+    public string? Title { get; set; }
 
-    public string? Introduce { get; set; }
+    public string? Alias { get; set; }
+
+    public string? Detail { get; set; }
 
     public int? Price { get; set; }
 
@@ -24,8 +26,6 @@ public partial class TbTour
     public string? Destination { get; set; }
 
     public bool? TopDestination { get; set; }
-
-    public int? AccountId { get; set; }
 
     public bool? IsBestTour { get; set; }
 
@@ -40,8 +40,6 @@ public partial class TbTour
     public bool IsActive { get; set; }
 
     public int? Star { get; set; }
-
-    public virtual TbAccount? Account { get; set; }
 
     public virtual ICollection<TbDestination> TbDestinations { get; set; } = new List<TbDestination>();
 

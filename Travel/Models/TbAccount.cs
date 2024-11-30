@@ -26,6 +26,4 @@ public partial class TbAccount
     public virtual TbRole? Role { get; set; }
 
     public virtual ICollection<TbBlog> TbBlogs { get; set; } = new List<TbBlog>();
-
-    public virtual ICollection<TbTour> TbTours { get; set; } = new List<TbTour>();
 }

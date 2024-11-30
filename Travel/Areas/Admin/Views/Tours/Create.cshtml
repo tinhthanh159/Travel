@@ -1,0 +1,95 @@
+﻿
+@model Travel.Models.TbTour
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Thêm sản phẩm</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">General Form</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-6">
+                    <!-- general form elements -->
+                    <div class="card card-primary" style="width: 1550px;">
+                        <div class="card-header" style="width: 1550px;">
+                            <h3 class="card-title">Thêm sản phẩm</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <form asp-action="Create">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group" style="width: 1500px; margin-left: 20px;">
+                                <label asp-for="Title" class="control-label">Tiêu đề</label>
+                                <input asp-for="Title" class="form-control" />
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+                          
+                            <div class="form-group" style="width: 1500px; margin-left: 20px;">
+                                <label asp-for="TypeId" class="control-label">Danh mục</label>
+                                <select asp-for="TypeId" class="form-control" asp-items="ViewBag.TypeId">
+                                <option value="0" selected>--[Chọn danh mục]--</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group" style="width: 1500px; margin-left: 20px;">
+                                <label asp-for="Price" class="control-label">Giá</label>
+                                <input asp-for="Price" class="form-control" />
+                                <span asp-validation-for="Price" class="text-danger"></span>
+                            </div>
+                            <div class="form-group " style="width: 1500px; margin-left: 20px;">
+                                <label asp-for="PriceSale" class="control-label">Giá giảm</label>
+                                <input asp-for="PriceSale" class="form-control" />
+                                <span asp-validation-for="PriceSale" class="text-danger"></span>
+                            </div>
+                            
+                            <div class="form-group " style="width: 1500px; margin-left: 20px;">
+                                <label asp-for="Star" class="control-label">Sao</label>
+                                <input asp-for="Star" class="form-control" />
+                                <span asp-validation-for="Star" class="text-danger"></span>
+                            </div>
+                            <div class="form-group form-check" style="width: 1500px; margin-left: 20px;">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" asp-for="IsActive" /> Hiện
+                                </label>
+                            </div>
+                            <div class="form-group" style="width: 1500px; margin-left: 20px;">
+                                <input type="submit" value="Thêm mới" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!--/.col (right) -->
+</div>
+<!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+<!-- /.content -->
+  </div>
+<!-- /.content-wrapper -->
+

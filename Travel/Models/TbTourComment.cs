@@ -19,9 +19,13 @@ public partial class TbTourComment
 
     public DateTime? CreatedDate { get; set; }
 
+    public string? Title { get; set; }
+
     public string? Detail { get; set; }
 
     public bool IsActive { get; set; }
+
+    public int? Star { get; set; }
 
     public virtual TbTour Tour { get; set; } = null!;
 }
