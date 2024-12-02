@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Travel.Models;
+using Travel.Utilities;
 
 namespace Travel.Areas.Admin.Controllers
 {
@@ -66,8 +67,7 @@ namespace Travel.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["TypeId"] = new 
-                SelectList(_context.TbTourTypes, "TypeId", "TypeId", tbTour.TypeId);
+            ViewData["TypeId"] = new SelectList(_context.TbTourTypes, "TypeId", "TypeId", tbTour.TypeId);
             return View(tbTour);
         }
 
@@ -84,8 +84,7 @@ namespace Travel.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["TypeId"] = new 
-                SelectList(_context.TbTourTypes, "TypeId", "Title", tbTour.TypeId);
+            ViewData["TypeId"] = new SelectList(_context.TbTourTypes, "TypeId", "Title", tbTour.TypeId);
             return View(tbTour);
         }
 

@@ -47,5 +47,5 @@ public partial class TbTour
 
     public virtual ICollection<TbTourDetail> TbTourDetails { get; set; } = new List<TbTourDetail>();
 
-    public virtual TbTourType Type { get; set; } = null!;
+    public virtual TbTourType? Type { get; set; }
 }

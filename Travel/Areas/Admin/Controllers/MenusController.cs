@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Travel.Models;
+using Travel.Utilities;
 
 namespace Travel.Areas.Admin.Controllers
 {

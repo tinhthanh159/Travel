@@ -5,111 +5,120 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Edit</h1>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Sửa sản phẩm</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">General Form</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
 
-<h4>TbTour</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="TourId" />
-            <div class="form-group">
-                <label asp-for="TypeId" class="control-label"></label>
-                <select asp-for="TypeId" class="form-control" asp-items="ViewBag.TypeId"></select>
-                <span asp-validation-for="TypeId" class="text-danger"></span>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md">
+                    <!-- general form elements -->
+                    <div class="card card-primary" style="width: 1550px;">
+                        <div class="card-header" style="width: 1550px;">
+                            <h3 class="card-title">Sửa sản phẩm</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <form asp-action="Edit">
+                            <input type="hidden" asp-for="TourId" />
+                            <div class="card-body">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-group" style="width: 1460px; margin-left: 20px;">
+                                    <label asp-for="Title" class="control-label">Tiêu đề</label>
+                                    <input asp-for="Title" class="form-control" />
+                                    <span asp-validation-for="Title" class="text-danger"></span>
+                                </div>
+                                <div class="form-group " style="width: 1460px; margin-left: 20px;">
+                                    <label asp-for="Alias" class="control-label"></label>
+                                    <input asp-for="Alias" class="form-control" />
+                                    <span asp-validation-for="Alias" class="text-danger"></span>
+                                </div>
+                                <div class="form-group" style="width: 1460px; margin-left: 20px;">
+                                    <label asp-for="TypeId" class="control-label">Loại tour</label>
+                                    <select asp-for="TypeId" class="form-control" asp-items="ViewBag.TypeId">
+                                        <option value="0" selected>[Chọn loại tour]</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="width: 1460px; margin-left: 20px;">
+                                    <label asp-for="Image" class="control-label">Ảnh</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <button type="button" class="btn btn-success" onclick="openDialog()">Choose a picture</button>
+                                        </div>
+                                        <input type="text" class="form-control" id="file_input" asp-for="Image" aria-describedby="button-addon2">
+                                    </div>
+                                    <span asp-validation-for="Image" class="text-danger"></span>
+                                </div>
+                                <div class="form-group" style="width: 1460px; margin-left: 20px;">
+                                    <label asp-for="Description" class="control-label">Mô tả</label>
+                                    <input asp-for="Description" class="form-control" />
+                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                </div>
+                                <div class="form-group" style="width: 1460px; margin-left: 20px;">
+                                    <label asp-for="Detail" class="control-label">Chi tiết</label>
+                                    <textarea asp-for="Detail" class="form-control"></textarea>
+                                    <span asp-validation-for="Detail" class="text-danger"></span>
+                                </div>
+                                <div class="form-group" style="width: 1460px; margin-left: 20px;">
+                                    <label asp-for="Price" class="control-label">Giá</label>
+                                    <input asp-for="Price" class="form-control" />
+                                    <span asp-validation-for="Price" class="text-danger"></span>
+                                </div>
+                                <div class="form-group " style="width: 1460px; margin-left: 20px;">
+                                    <label asp-for="PriceSale" class="control-label">Giá giảm</label>
+                                    <input asp-for="PriceSale" class="form-control" />
+                                    <span asp-validation-for="PriceSale" class="text-danger"></span>
+                                </div>
+                                <div class="form-group" style="width: 1460px; margin-left: 20px;">
+                                    <label asp-for="TourDuration" class="control-label">Thời gian tour</label>
+                                    <input asp-for="TourDuration" class="form-control" />
+                                    <span asp-validation-for="TourDuration" class="text-danger"></span>
+                                </div>
+                                <div class="form-group " style="width: 1460px; margin-left: 20px;">
+                                    <label asp-for="Star" class="control-label">Sao</label>
+                                    <input asp-for="Star" class="form-control" />
+                                    <span asp-validation-for="Star" class="text-danger"></span>
+                                </div>
+                                <div class="form-group form-check" style="width: 1460px; margin-left: 20px;">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" asp-for="IsActive" class="btn btn-primary" /> Hiện
+                                    </label>
+                                </div>
+                                <div class="form-group" style="width: 1460px; margin-left: 20px;">
+                                    <input type="submit" value="Sửa" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!--/.col (right) -->
             </div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Alias" class="control-label"></label>
-                <input asp-for="Alias" class="form-control" />
-                <span asp-validation-for="Alias" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Detail" class="control-label"></label>
-                <input asp-for="Detail" class="form-control" />
-                <span asp-validation-for="Detail" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PriceSale" class="control-label"></label>
-                <input asp-for="PriceSale" class="form-control" />
-                <span asp-validation-for="PriceSale" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Image" class="control-label"></label>
-                <input asp-for="Image" class="form-control" />
-                <span asp-validation-for="Image" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Destination" class="control-label"></label>
-                <input asp-for="Destination" class="form-control" />
-                <span asp-validation-for="Destination" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TopDestination" class="control-label"></label>
-                <input asp-for="TopDestination" class="form-control" />
-                <span asp-validation-for="TopDestination" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IsBestTour" class="control-label"></label>
-                <input asp-for="IsBestTour" class="form-control" />
-                <span asp-validation-for="IsBestTour" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IsNew" class="control-label"></label>
-                <input asp-for="IsNew" class="form-control" />
-                <span asp-validation-for="IsNew" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Country" class="control-label"></label>
-                <input asp-for="Country" class="form-control" />
-                <span asp-validation-for="Country" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TourDuration" class="control-label"></label>
-                <input asp-for="TourDuration" class="form-control" />
-                <span asp-validation-for="TourDuration" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Assess" class="control-label"></label>
-                <input asp-for="Assess" class="form-control" />
-                <span asp-validation-for="Assess" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="Star" class="control-label"></label>
-                <input asp-for="Star" class="form-control" />
-                <span asp-validation-for="Star" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<!-- /.content-wrapper -->
+@{
+    var summerNote = new Travel.Areas.Admin.Models.SummerNote("#Detail");
+    <partial name="_SummerNote" model="summerNote" />
 }

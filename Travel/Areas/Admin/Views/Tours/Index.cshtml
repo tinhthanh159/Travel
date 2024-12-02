@@ -11,7 +11,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Quản lý menu</h1>
+                    <h1>Quản lý Tour</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -52,12 +52,13 @@
                                 <thead>
                                     <tr>
                                         <th>STT</th>
-                                        <th>Tên SP</th>
-                                        <th>Danh mục</th>
+                                        <th>Tên tour</th>
+                                        <th>Loại tour</th>
+                                        <th>Mô tả</th>
                                         <th>Ảnh</th>
                                         <th>Giá</th>
-                                        <th>Giá giảm</th>
-                                       
+                                        <th>Sale</th>
+                                        <th>Thời gian tour</th>
                                         <th>Sao</th>
                                         <th>Hiện</th>
                                         <th></th>
@@ -73,17 +74,19 @@
                                             <td>@(i++)</td>
                                             <td>@Html.DisplayFor(modelItem => item.Title)</td>
                                             <td>@Html.DisplayFor(modelItem => item.Type.Title)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Description)</td>
                                             <td><img src="@Html.DisplayFor(modelItem => item.Image)" width="50" hight="50" /></td>
                                             <td>@Html.DisplayFor(modelItem => item.Price)</td>
                                             <td>@Html.DisplayFor(modelItem => item.PriceSale)</td>
-                                    
+                                            <td>@Html.DisplayFor(modelItem => item.TourDuration)</td>
                                             <td>@Html.DisplayFor(modelItem => item.Star)</td>
                                             <td>@Html.DisplayFor(modelItem => item.IsActive)</td>
                                             <td>
                                                 <div class="float-right">
-                                                    <a asp-action="Edit" asp-route-id="@item.TourId" class="btn btn-primary">Sửa</a> |
-                                                    <a asp-action="Details" asp-route-id="@item.TourId" class="btn btn-info">Chi tiết</a> |
+                                                    <a asp-action="Edit" asp-route-id="@item.TourId" class="btn btn-primary">Sửa</a> 
+                                                    <a asp-action="Details" asp-route-id="@item.TourId" class="btn btn-info">Chi tiết</a> 
                                                     <a asp-action="Delete" asp-route-id="@item.TourId" class="btn btn-danger">Xóa</a>
+
                                                 </div>
 
                                             </td>

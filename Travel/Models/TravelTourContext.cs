@@ -17,6 +17,8 @@ public partial class TravelTourContext : DbContext
 
     public virtual DbSet<TbAccount> TbAccounts { get; set; }
 
+    public virtual DbSet<TbAdminUser> TbAdminUsers { get; set; }
+
     public virtual DbSet<TbBlog> TbBlogs { get; set; }
 
     public virtual DbSet<TbBlogComment> TbBlogComments { get; set; }
@@ -67,6 +69,17 @@ public partial class TravelTourContext : DbContext
             entity.HasOne(d => d.Role).WithMany(p => p.TbAccounts)
                 .HasForeignKey(d => d.RoleId)
                 .HasConstraintName("FK_tb_Account_tb_Role");
+        });
+
+        modelBuilder.Entity<TbAdminUser>(entity =>
+        {
+            entity.HasKey(e => e.UserId);
+
+            entity.ToTable("tb_AdminUser");
+
+            entity.Property(e => e.Email).HasMaxLength(50);
+            entity.Property(e => e.Password).HasMaxLength(50);
+            entity.Property(e => e.UserName).HasMaxLength(50);
         });
 
         modelBuilder.Entity<TbBlog>(entity =>

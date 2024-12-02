@@ -1,4 +1,4 @@
-﻿
+﻿@using Travel.Areas.Admin.Models﻿
 @model Travel.Models.TbTour
 
 @{
@@ -44,14 +44,37 @@
                                 <input asp-for="Title" class="form-control" />
                                 <span asp-validation-for="Title" class="text-danger"></span>
                             </div>
-                          
+                            <div class="form-group" style="width: 1500px; margin-left: 20px;">
+                                <label asp-for="Alias" class="control-label"></label>
+                                <input asp-for="Alias" class="form-control" />
+                                <span asp-validation-for="Alias" class="text-danger"></span>
+                            </div>
                             <div class="form-group" style="width: 1500px; margin-left: 20px;">
                                 <label asp-for="TypeId" class="control-label">Danh mục</label>
                                 <select asp-for="TypeId" class="form-control" asp-items="ViewBag.TypeId">
-                                <option value="0" selected>--[Chọn danh mục]--</option>
+                                <option value="0" selected>[Chọn loại tour]</option>
                                 </select>
                             </div>
-                            
+                            <div class="form-group" style="width: 1500px; margin-left: 20px;">
+                                <label asp-for="Image" class="control-label">Ảnh</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <button type="button" class="btn btn-success" onclick="openDialog()">Choose a picture</button>
+                                    </div>
+                                    <input type="text" class="form-control" id="file_input" asp-for="Image" aria-describedby="button-addon2">
+                                </div>
+                                <span asp-validation-for="Image" class="text-danger"></span>
+                            </div>
+                            <div class="form-group" style="width: 1500px; margin-left: 20px;">
+                                <label asp-for="Description" class="control-label"> Mô tả</label>
+                                <input asp-for="Description" class="form-control" />
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                            <div class="form-group " style="width: 1500px; margin-left: 20px;">
+                                <label asp-for="Detail" class="control-label">Chi tiết</label>
+                                <textarea asp-for="Detail" class="form-control"></textarea>
+                                <span asp-validation-for="Detail" class="text-danger"></span>
+                            </div>
                             <div class="form-group" style="width: 1500px; margin-left: 20px;">
                                 <label asp-for="Price" class="control-label">Giá</label>
                                 <input asp-for="Price" class="form-control" />
@@ -62,7 +85,11 @@
                                 <input asp-for="PriceSale" class="form-control" />
                                 <span asp-validation-for="PriceSale" class="text-danger"></span>
                             </div>
-                            
+                            <div class="form-group " style="width: 1500px; margin-left: 20px;">
+                                <label asp-for="TourDuration" class="control-label">Thời gian tour</label>
+                                <input asp-for="TourDuration" class="form-control" />
+                                <span asp-validation-for="TourDuration" class="text-danger"></span>
+                            </div>
                             <div class="form-group " style="width: 1500px; margin-left: 20px;">
                                 <label asp-for="Star" class="control-label">Sao</label>
                                 <input asp-for="Star" class="form-control" />
@@ -74,7 +101,8 @@
                                 </label>
                             </div>
                             <div class="form-group" style="width: 1500px; margin-left: 20px;">
-                                <input type="submit" value="Thêm mới" class="btn btn-primary" />
+                                <input type="submit" value="Thêm mới" class="btn btn-primary" /> 
+                                <a asp-action="Index" class="btn btn-primary">Quay lại</a>
                             </div>
                         </form>
                     </div>
@@ -92,4 +120,11 @@
 <!-- /.content -->
   </div>
 <!-- /.content-wrapper -->
-
+@{
+    var summerNote = new Travel.Areas.Admin.Models.SummerNote("#Detail");
+    <partial name="_SummerNote" model="summerNote" />
+}
+@section Scripts {
+    @{
+    await  Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
