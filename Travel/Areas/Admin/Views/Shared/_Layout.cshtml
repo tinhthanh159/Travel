@@ -25,6 +25,9 @@
     <link rel="stylesheet" href="~/admin/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="~/admin/plugins/summernote/summernote-bs4.min.css">
+
+    <script src="~/admin/plugins/jquery/jquery.min.js"></script>
+    <script src="~/admin/plugins/jquery-ui/jquery-ui.min.js"></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -42,7 +45,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">Home</a>
+                    <a href="/Admin/Home/" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contact</a>
@@ -218,13 +221,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="./index.html" class="nav-link active">
+                                    <a href="/Admin/Menus" class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Menus" ? "active" : "")">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Dashboard v1</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="./index2.html" class="nav-link">
+                                    <a href="/Admin/Tours" class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Tours" ? "active" : "")">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Dashboard v2</p>
                                     </a>
@@ -864,9 +867,9 @@
     </div>
     <!-- ./wrapper -->
     <!-- jQuery -->
-    <script src="~/admin/plugins/jquery/jquery.min.js"></script>
+    @*<script src="~/admin/plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
-    <script src="~/admin/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="~/admin/plugins/jquery-ui/jquery-ui.min.js"></script>*@
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
         $.widget.bridge('uibutton', $.ui.button)
@@ -888,7 +891,7 @@
     <!-- Tempusdominus Bootstrap 4 -->
     <script src="~/admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
     <!-- Summernote -->
-    <script src="~/admin/plugins/summernote/summernote-bs4.min.js"></script>
+ @*   <script src="~/admin/plugins/summernote/summernote-bs4.min.js"></script>*@
     <!-- overlayScrollbars -->
     <script src="~/admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->
@@ -897,5 +900,7 @@
     <script src="~/admin/dist/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="~/admin/dist/js/pages/dashboard.js"></script>
+    @RenderSection("Scripts", required: false)
+
 </body>
 </html>

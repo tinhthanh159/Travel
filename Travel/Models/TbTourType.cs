@@ -7,7 +7,7 @@ public partial class TbTourType
 {
     public int TypeId { get; set; }
 
-    public string? TypeName { get; set; }
+    public string? Title { get; set; }
 
     public string? Alias { get; set; }
 
@@ -25,7 +25,7 @@ public partial class TbTourType
 
     public string? ModifiedBy { get; set; }
 
-    public bool? IsActive { get; set; }
+    public bool IsActive { get; set; }
 
     public virtual ICollection<TbNews> TbNews { get; set; } = new List<TbNews>();
 

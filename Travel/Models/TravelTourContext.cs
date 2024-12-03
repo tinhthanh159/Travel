@@ -17,6 +17,8 @@ public partial class TravelTourContext : DbContext
 
     public virtual DbSet<TbAccount> TbAccounts { get; set; }
 
+    public virtual DbSet<TbAdminUser> TbAdminUsers { get; set; }
+
     public virtual DbSet<TbBlog> TbBlogs { get; set; }
 
     public virtual DbSet<TbBlogComment> TbBlogComments { get; set; }
@@ -67,6 +69,17 @@ public partial class TravelTourContext : DbContext
             entity.HasOne(d => d.Role).WithMany(p => p.TbAccounts)
                 .HasForeignKey(d => d.RoleId)
                 .HasConstraintName("FK_tb_Account_tb_Role");
+        });
+
+        modelBuilder.Entity<TbAdminUser>(entity =>
+        {
+            entity.HasKey(e => e.UserId);
+
+            entity.ToTable("tb_AdminUser");
+
+            entity.Property(e => e.Email).HasMaxLength(50);
+            entity.Property(e => e.Password).HasMaxLength(50);
+            entity.Property(e => e.UserName).HasMaxLength(50);
         });
 
         modelBuilder.Entity<TbBlog>(entity =>
@@ -251,19 +264,15 @@ public partial class TravelTourContext : DbContext
 
             entity.ToTable("tb_Tour");
 
-            entity.Property(e => e.AccountId).HasColumnName("AccountID");
+            entity.Property(e => e.Alias).HasMaxLength(250);
             entity.Property(e => e.Country).HasMaxLength(100);
             entity.Property(e => e.Description).HasMaxLength(1000);
             entity.Property(e => e.Destination).HasMaxLength(500);
+            entity.Property(e => e.Detail).HasMaxLength(500);
             entity.Property(e => e.Image).HasMaxLength(500);
-            entity.Property(e => e.Introduce).HasMaxLength(500);
             entity.Property(e => e.PriceSale).HasMaxLength(50);
+            entity.Property(e => e.Title).HasMaxLength(100);
             entity.Property(e => e.TourDuration).HasMaxLength(100);
-            entity.Property(e => e.TourName).HasMaxLength(100);
-
-            entity.HasOne(d => d.Account).WithMany(p => p.TbTours)
-                .HasForeignKey(d => d.AccountId)
-                .HasConstraintName("FK_tb_Tour_tb_Account");
 
             entity.HasOne(d => d.Type).WithMany(p => p.TbTours)
                 .HasForeignKey(d => d.TypeId)
@@ -284,6 +293,7 @@ public partial class TravelTourContext : DbContext
             entity.Property(e => e.Image).HasMaxLength(150);
             entity.Property(e => e.Name).HasMaxLength(50);
             entity.Property(e => e.Phone).HasMaxLength(50);
+            entity.Property(e => e.Title).HasMaxLength(250);
 
             entity.HasOne(d => d.Tour).WithMany(p => p.TbTourComments)
                 .HasForeignKey(d => d.TourId)
@@ -336,7 +346,7 @@ public partial class TravelTourContext : DbContext
             entity.Property(e => e.Icon).HasMaxLength(500);
             entity.Property(e => e.ModifiedBy).HasMaxLength(150);
             entity.Property(e => e.ModifiedDate).HasColumnType("datetime");
-            entity.Property(e => e.TypeName).HasMaxLength(50);
+            entity.Property(e => e.Title).HasMaxLength(50);
         });
 
         OnModelCreatingPartial(modelBuilder);

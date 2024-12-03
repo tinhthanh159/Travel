@@ -1,0 +1,96 @@
+﻿@model Travel.Models.TbTour
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Xóa tour</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">General Form</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-6">
+                    <!-- general form elements -->
+                    <div class="card card-primary" style="width: 1550px;">
+                        <div class="card-header" style="width: 1550px;">
+                            <h3 class="card-title">Xóa tour</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Tiêu đề:</label>
+                                @Html.DisplayFor(model => model.Title)
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Alias:</label>
+                                @Html.DisplayFor(model => model.Alias)
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Chi tiết:</label>
+                                <textarea asp-for="Detail" class="form-control"></textarea>
+                               
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Ảnh:</label>
+                                <img src="@Html.DisplayFor(modelItem => modelItem.Image)" width="50" hight="50" />
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Giá:</label>
+                                @Html.DisplayFor(model => model.Price)
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Giá giảm:</label>
+                                @Html.DisplayFor(model => model.PriceSale)
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Sao:</label>
+                                @Html.DisplayFor(model => model.Star)
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Hiện:</label>
+                                @Html.DisplayFor(model => model.IsActive)
+                            </div>
+                            <form asp-action="Delete">
+                                <input type="hidden" asp-for="TourId" />
+                                <input type="submit" value="Xóa" class="btn btn-danger" />  
+                                <a asp-action="Index" class="btn btn-primary">Quay lại</a>
+                            </form>
+                        </div>
+                        <!-- /.card -->
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!--/.col (right) -->
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+@{
+    var summerNote = new Travel.Areas.Admin.Models.SummerNote("#Detail");
+    <partial name="_SummerNote" model="summerNote" />
+}

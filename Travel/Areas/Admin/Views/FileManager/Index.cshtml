@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "File Manager";
+}
+
+<div id="elfinder"></div>
+
+@section Scripts {
+    <link rel="stylesheet" href="~/admin/lib/snote/jquery.min.js" />
+    <link rel="stylesheet" href="~/admin/lib/snote/bootstrap.bundle.min.js" />
+    <link rel="stylesheet" href="~/admin/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/admin/lib/snote/summernote-bs4.min.js" />
+    <link rel="stylesheet" href="~/admin/lib/snote/summernote-bs4.min.css" />
+
+    <link rel="stylesheet" href="~/admin/lib/jqueryui/themes/themes/base/theme.css" />
+    <link rel="stylesheet" href="~/admin/lib/jqueryui/themes/jquery-ui.css" />
+    <link rel="stylesheet" href="~/admin/lib/elfinder/css/elfinder.full.css" />
+    @* <link rel="stylesheet" href="~/admin/lib/elfinder/css/theme.min.css" /> *@
+
+    <link rel="stylesheet" href="~/admin/elfinder-material-theme/Material/css/theme-light.min.css" />
+
+    @* <script src="~/admin/lib/jquery/dist/jquery.min.js"></script> *@
+    <script src="~/admin/lib/jqueryui/jquery-ui.min.js"></script>
+    <script src="~/admin/lib/elfinder/js/elfinder.min.js"></script>
+
+    <script type="text/javascript">
+        // Documentation for client options:
+        // https://github.com/Studio-42/elFinder/wiki/Client-configuration-options
+        $(document).ready(function () {
+            var myCommands = elFinder.prototype._options.commands;
+
+            // Not yet implemented commands in elFinder.NetCore
+            var disabled = ['callback', 'chmod', 'editor', 'netmount', 'ping', 'search', 'zipdl', 'help'];
+            elFinder.prototype.i18.en.messages.TextArea = "Edit";
+
+            $.each(disabled, function (i, cmd) {
+                (idx = $.inArray(cmd, myCommands)) !== -1 && myCommands.splice(idx, 1);
+            });
+
+            var options = {
+                baseUrl: "/Admin/lib/elfinder/",
+                url: "/Admin/el-finder-file-system/connector",
+                rememberLastDir: false,
+                commands: myCommands,
+                lang: 'vi',
+                uiOptions: {
+                    toolbar: [
+                        ['back', 'forward'],
+                        ['reload'],
+                        ['home', 'up'],
+                        ['mkdir', 'mkfile', 'upload'],
+                        ['open', 'download'],
+                        ['undo', 'redo'],
+                        ['info'],
+                        ['quicklook'],
+                        ['copy', 'cut', 'paste'],
+                        ['rm'],
+                        ['duplicate', 'rename', 'edit'],
+                        ['selectall', 'selectnone', 'selectinvert'],
+                        ['view', 'sort']
+                    ]
+                },
+                //onlyMimes: ["image", "text/plain"] // Get files of requested mime types only
+                lang: 'vi',
+            };
+            $('#elfinder').elfinder(options).elfinder('instance');
+        });
+    </script>
+}
