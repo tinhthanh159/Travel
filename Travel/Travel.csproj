@@ -31,6 +31,8 @@
   <ItemGroup>
     <None Include="wwwroot\admin\lib\elFinder\files\.trash\.gitkeep" />
     <None Include="wwwroot\admin\lib\elFinder\php\.tmp\.htaccess" />
+    <None Include="wwwroot\assets\toastr\toastr.js.map" />
+    <None Include="wwwroot\assets\toastr\toastr.min.js" />
   </ItemGroup>
 
 </Project>

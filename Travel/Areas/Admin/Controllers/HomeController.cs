@@ -12,5 +12,18 @@ namespace Travel.Areas.Admin.Controllers
                 return RedirectToAction("Index", "Login");
             return View();
         }
+        public IActionResult Logout()
+        {
+            // Clear session or user data
+            Function._UserId = 0;
+            Function._UserName = string.Empty;
+            Function._Email = string.Empty;
+            Function._Message = string.Empty;
+            Function._MessageEmail = string.Empty;
+
+            // Redirect the user to the homepage
+            return RedirectToAction("Index", "Login");
+        }
+
     }
 }

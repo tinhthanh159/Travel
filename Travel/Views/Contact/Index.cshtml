@@ -111,19 +111,19 @@
         $(document).ready(function () {
             $("#c_submit").click(function () {
                 _name = $("#c_name").val();
-                _phone = $("#c_phone").val();
                 _email = $("#c_email").val();
-                _message = $("#c_message").val();
+                _title = $("#c_title").val();
+                _detail = $("#c_detail").val();
                 $.ajax({
-                    url: "/Contact/Create",
+                    url: "/Tour/Create",
                     type: "POST",
-                    data: { name: _name, phone: _phone, email: _email, message: _message },
+                    data: { name: _name, email: _email, title: _title, detail: _detail },
                     success: function (result) {
                         if (result != null) {
                             $("#c_name").val("");
-                            $("#c_phone").val("");
                             $("#c_email").val("");
-                            $("#c_message").val("");
+                            $("#c_title").val("");
+                            $("#c_detail").val("");
                             toastr.success('Gửi thành công')
                         }
                         else {

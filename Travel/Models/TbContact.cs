@@ -5,6 +5,8 @@ namespace Travel.Models;
 
 public partial class TbContact
 {
+    internal string Title;
+
     public int ContactId { get; set; }
 
     public string? Name { get; set; }

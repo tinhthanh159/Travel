@@ -1,12 +1,15 @@
-﻿using Travel.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
+using System.Threading.Tasks;
+using Travel.Models;
 
 namespace Travel.Controllers
 {
     public class TourController : Controller
     {
         private readonly TravelTourContext _context;
+
         public TourController(TravelTourContext context)
         {
             _context = context;
@@ -37,5 +40,33 @@ namespace Travel.Controllers
             OrderByDescending(i => i.TourId).ToList();
             return View(tour);
         }
+        //  [Route("Tour/AddReview")]
+        public async Task<IActionResult> Create(string name, string email, string title, string detail, int tourId, int star)
+        {
+            try
+            {
+                TbTourComment contact = new TbTourComment
+                {
+                    Name = name,
+                    Star = star, // Assign the selected star rating
+                    Email = email,
+                    Title = title,
+                    Detail = detail,
+                    CreatedDate = DateTime.Now,
+                    TourId = tourId,
+                    IsActive = true,
+                };
+
+                await _context.AddAsync(contact);
+                await _context.SaveChangesAsync();
+                return Json(new { status = true });
+            }
+            catch
+            {
+                return Json(new { status = false });
+            }
+        }
+
+
     }
 }

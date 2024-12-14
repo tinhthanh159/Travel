@@ -5,6 +5,10 @@ namespace Travel.Models;
 
 public partial class TbTour
 {
+    internal string Name;
+    internal string Email;
+    internal DateTime CreatedDate;
+
     public int TourId { get; set; }
 
     public int TypeId { get; set; }

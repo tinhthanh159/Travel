@@ -4,7 +4,7 @@ using Travel.Utilities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
-namespace Harmic.Areas.Admin.Controllers
+namespace Travel.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class RegisterController : Controller

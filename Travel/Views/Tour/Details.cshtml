@@ -242,7 +242,7 @@
                         {
                         <div class="comment-box">
                             <div class="comment-image">
-                                    <img src="@item.Image" alt="image" style="max-width: 99px; max-height: 99px;">
+                                    <img src="~/assets/images/testimonial/img1.jpg" alt="image" style="max-width: 99px; max-height: 99px;">
 
                             </div>
                             <div class="comment-content rounded">
@@ -278,28 +278,49 @@
                     <!-- blog review -->
                     <div id="single-add-review" class="single-add-review">
                         <h4>Viết đánh giá</h4>
+                        <div class="review-header" style="display: flex; align-items: center; gap: 10px;">
+                            <span class="rating-label" style=" padding-bottom: 20px; padding-left: 5px;">Chất lượng tour</span>
+                            <div class="rating" style=" padding-bottom: 20px; padding-left: 0px;">
+                                <span class="fa fa-star" data-value="1"></span>
+                                <span class="fa fa-star" data-value="2"></span>
+                                <span class="fa fa-star" data-value="3"></span>
+                                <span class="fa fa-star" data-value="4"></span>
+                                <span class="fa fa-star" data-value="5"></span>
+                            </div>
+                        </div>
+                        <input type="hidden" id="c_star" value="0">
                         <form>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group mb-2">
-                                        <input type="text" placeholder="Name">
+                                        <input type="text" id="c_name" placeholder="Name*" class="input-field">
                                     </div>
                                 </div>
+
                                 <div class="col-md-6">
                                     <div class="form-group mb-2">
-                                        <input type="email" placeholder="Email">
+                                        <input type="text" id="c_email" placeholder="Email*" class="input-field">
+                                    </div>
+                                </div>                               
+                                <div class="col-md-12">
+                                    <div class="form-group mb-2">
+                                        <input type="text" id="c_title" placeholder="Title*" class="input-field">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group mb-2">
-                                        <textarea>Comment</textarea>
+                                        <textarea id ="c_detail" placeholder="Detail" class="textarea-field">Comment</textarea>
                                     </div>
                                 </div>
+                                <input type="hidden" id="c_tourId" value="@Model.TourId">
+
                                 <div class="col-md-6">
                                     <div class="form-btn">
-                                        <a href="#" class="nir-btn">Gửi</a>
+                                        <button id="c_submit" type="button" value="submit"
+                                            name="submit" class="nir-btn">Gửi</button>
                                     </div>
                                 </div>
+                                
                             </div>
                         </form>
                     </div>
@@ -363,4 +384,90 @@
     <div class="section-shape  top-inherit bottom-0" style="background-image: url('@Url.Content("~/assets/images/shape6.png")');"></div>
 </section>
 <!-- Discount action Ends -->
+
+<style>
+    .rating .fa-star {
+        color: #ccc; /* Màu mặc định */
+        cursor: pointer;
+        transition: color 0.2s ease-in-out;
+    }
+
+        .rating .fa-star.hovered,
+        .rating .fa-star.checked {
+            color: #f39c12; /* Màu vàng khi được chọn hoặc hover */
+        }
+
+}
+
+</style>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Xử lý hover trên sao
+            $(".rating span").hover(
+                function () {
+                    var hoverValue = $(this).data("value"); // Lấy giá trị sao khi hover
+                    $(".rating span").each(function () {
+                        if ($(this).data("value") <= hoverValue) {
+                            $(this).addClass("hovered"); // Thêm class "hovered" cho sao khi hover
+                        } else {
+                            $(this).removeClass("hovered"); // Bỏ class "hovered" cho các sao còn lại
+                        }
+                    });
+                },
+                function () {
+                    $(".rating span").removeClass("hovered"); // Xóa class "hovered" khi chuột rời khỏi
+                }
+            );
+
+            // Xử lý click chọn sao
+            $(".rating span").click(function () {
+                var selectedValue = $(this).data("value"); // Lấy giá trị sao từ data-value
+                $("#c_star").val(selectedValue); // Gán giá trị sao vào input ẩn
+
+                // Đánh dấu sao được chọn
+                $(".rating span").each(function () {
+                    if ($(this).data("value") <= selectedValue) {
+                        $(this).addClass("checked"); // Thêm class "checked" cho sao được chọn
+                    } else {
+                        $(this).removeClass("checked"); // Bỏ class "checked" cho sao không được chọn
+                    }
+                });
+            });
+            // Xử lý gửi dữ liệu
+            $("#c_submit").click(function (e) {
+                e.preventDefault();
+                var _name = $("#c_name").val();
+                var _email = $("#c_email").val();
+                var _title = $("#c_title").val();
+                var _message = $("#c_detail").val();
+                var _tourId = $("#c_tourId").val();
+                var _star = $("#c_star").val(); // Lấy giá trị sao từ input ẩn
+
+                $.ajax({
+                    url: "/Tour/Create",
+                    type: "POST",
+                    data: { name: _name, email: _email, title: _title, detail: _message, tourId: _tourId, star: _star },
+                    success: function (result) {
+                        if (result.status) {
+                            $("#c_name").val("");
+                            $("#c_email").val("");
+                            $("#c_title").val("");
+                            $("#c_detail").val("");
+                            $("#c_star").val("0");
+                            $(".rating span").removeClass("checked"); // Reset đánh dấu sao
+                            location.reload();
+                            toastr.success('Gửi thành công');
+                        } else {
+                            toastr.error('Gửi không thành công');
+                        }
+                    }
+                });
+            });
+        });
+
+
+    </script>
+}
+
 

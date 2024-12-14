@@ -40,6 +40,8 @@ namespace Travel.Utilities
 
         public static string _Message = string.Empty;
         public static string _MessageEmail = string.Empty;
+        internal static int _UserId;
+        internal static string _UserName;
 
         public static bool IsLogin()
         {
