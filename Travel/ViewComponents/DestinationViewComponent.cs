@@ -18,6 +18,7 @@ namespace Travel.ViewComponents
                 .Where(m => m.IsActive == true && m.TopDestination == true)
                 .OrderByDescending(m => m.DestinationId)
                 .ToList();
+            ViewBag.DestinationTop = _context.TbDestinations.Where(t => t.TopDestination == true && t.IsNew == false).ToList();
 
             return View(items);
         }
