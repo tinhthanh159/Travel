@@ -49,6 +49,10 @@ public partial class TravelTourContext : DbContext
 
     public virtual DbSet<TbTourType> TbTourTypes { get; set; }
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("data source= DESKTOP-08L2AHS; initial catalog=travel_tour; integrated security=True; TrustServerCertificate=True;");
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<TbAccount>(entity =>
@@ -320,7 +324,7 @@ public partial class TravelTourContext : DbContext
 
         modelBuilder.Entity<TbTourGuide>(entity =>
         {
-            entity.HasKey(e => e.GuideId).HasName("PK__tb_TourG__E77EE05EE83903E2");
+            entity.HasKey(e => e.GuideId).HasName("PK__tb_TourG__E77EE05E37A7C68B");
 
             entity.ToTable("tb_TourGuide");
 
