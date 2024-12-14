@@ -1,7 +1,7 @@
 ﻿using Travel.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Travel.ViewComponents
+namespace Harmic.ViewComponents
 {
     public class MenuTopViewComponent : ViewComponent
     {
