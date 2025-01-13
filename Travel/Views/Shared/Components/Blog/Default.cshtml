@@ -1,6 +1,7 @@
 ﻿@model  IEnumerable<Travel.Models.TbBlog>
 
 @foreach(var item in Model) {
+    string sUrl = $"/blog/{item.Alias}-{item.BlogId}.html";
         <div class="col-lg-4">
         <div class="trend-item box-shadow bg-white mb-4 rounded overflow-hidden">
             <div class="trend-image">
@@ -10,7 +11,7 @@
                 <div class="trend-content">
                     <h5 class="theme mb-1">@item.Topic</h5>
                     <h4>
-                        <a href="detail-1.html">
+                        <a href="@sUrl">
                             @item.Title
                         </a>
                     </h4>
@@ -23,7 +24,7 @@
                             <span>@item.CreatedBy</span>
                         </div>
                         <div class="entry-button d-flex align-items-centermb-2">
-                            <a href="#" class="nir-btn">Read More</a>
+                            <a href="@sUrl" class="nir-btn">Read More</a>
                         </div>
                     </div>
                 </div>

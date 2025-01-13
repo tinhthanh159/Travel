@@ -1,0 +1,208 @@
+﻿@model TbBlog
+@{
+    List<TbBlogComment> blogComment = ViewBag.blogComment;
+}
+   <!-- Breadcrumb -->
+<div class="page-cover pt-10 pb-10 bg-lgrey border-b">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4">
+                <div class="cover-content text-center text-md-start">
+                    <div class="author-detail mb-2">
+                        <a href="post-list-1.html" class="tag white bg-theme py-1 px-3 me-2 rounded">#@Model.Topic</a>
+                        <a href="post-list-1.html" class="tag py-1 px-3"><i class="fa fa-eye"></i> 2500</a>
+                    </div>
+                    <h1 class="lh-sm">@Model.Title</h1>
+                    <div class="author-detail d-flex align-items-center">
+                        <span class="me-3"><a href="post-list-1.html"><i class="fa fa-clock"></i> @Model.CreatedDate</a></span>
+                        <span class="me-3"><a href="post-list-1.html"><i class="fa fa-user"></i> @Model.CreatedBy</a></span>
+                        <span><a href="post-list-1.html"><i class="fa fa-comments"></i> @blogComment.Count()</a></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <div class="box-shadow p-3 position-relative">
+                    <img src="@Model.Image" alt="Image" class="w-100 rounded">
+                    <div class="video-button text-center position-absolute top-50 start-0 end-0 z-index1">
+                        <div class="call-button text-center">
+                            <button type="button" class="play-btn js-video-button" data-video-id="347747035" data-channel="vimeo">
+                                <i class="fa fa-play bg-blue"></i>
+                            </button>
+                        </div>
+                        <div class="video-figure"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Ends -->
+<!-- blog starts -->
+<section class="blog blog-left pt-10">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12 col-sm-12">
+                <div class="blog-single">
+
+                    <div class="blog-single-in d-md-flex align-items-center mb-4 text-center text-md-start">
+                        <div class="blog-date me-4">
+                            <div class="date text-center bg-theme p-5 py-4 rounded">
+                                <h2 class="day mb-0 white">11</h2>
+                                <div class="month white">May</div>
+                            </div>
+                        </div>
+                        <div class="blog-single-in-cont w-75">
+                            <div class="blog-content">
+                                <h2 class="blog-title mb-0"><a href="#" class="">@Model.Description</a></h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="blog-wrapper">
+                        <div class="blog-content">
+                            <div class="blog-imagelist mb-3">
+                               
+                            </div>
+                            <p class="mb-3">
+                                @Model.Detail
+                            </p>
+                        </div>
+
+                       
+
+                      
+                        <!-- blog share -->
+                        <div class="blog-share d-flex justify-content-between align-items-center mb-4 bg-lgrey border rounded">
+                            <div class="blog-share-tag">
+                                <ul class="inline">
+                                    <li><strong>Posted In:</strong></li>
+                                    <li><a href="#">Fashion,</a></li>
+                                    <li><a href="#">Beauty,</a></li>
+                                    <li><a href="#">Vacation,</a></li>
+                                    <li><a href="#">Travel,</a></li>
+                                    <li><a href="#">News</a></li>
+                                </ul>
+                            </div>
+                            <div class="header-social">
+                                <ul>
+                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+                        <!-- blog comment list -->
+                        <div class="single-comments single-box mb-4">
+                            <h4 class="mb-4">Showing @blogComment.Count() verified guest comments</h4>
+                            @foreach(var item in blogComment)
+                        {
+                            <div class="comment-box">
+                                <div class="comment-image mt-2">
+                                    <img src="~/images/reviewer/1.jpg" alt="image">
+                                </div>
+                                <div class="comment-content rounded">
+                                    <h4 class="mb-1 Soldman Kell">@item.Name</h4>
+                                    <p class="comment-date">April 25, 2019 at 10:46 am</p>
+                                    <div class="comment-rate">
+                                        <div class="rating">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                        </div>
+                                        <span class="comment-title">"@item.Email"</span>
+                                    </div>
+
+                                    <p class="comment">@item.Detail</p>
+                                    <div class="comment-like">
+                                        <div class="like-title float-left">
+                                            <a href="#" class="nir-btn mr-2">Reply</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                           }
+                        </div>
+
+                        <!-- blog review -->
+                        <div class="single-add-review">
+                            <h4 class="">Write a Review</h4>
+                            <form>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group mb-2">
+                                            <input type="text" placeholder="Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group mb-2">
+                                            <input type="email" placeholder="Email">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 mb-1">
+                                        <div class="form-group">
+                                            <textarea>Comment</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-btn">
+                                            <a href="#" class="nir-btn">Submit Review</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- sidebar starts -->
+            <div class="col-lg-4 col-md-12">
+                <div class="sidebar-sticky">
+                    <div class="list-sidebar">
+                        <div class="author-news mb-4 box-shadow border-all p-5 text-center rounded">
+                            <div class="author-news-content">
+                                <div class="author-thumb mb-1">
+                                    <img src="~/images/team/img2.jpg" alt="author">
+                                </div>
+                                <div class="author-content">
+                                    <h3 class="title mb-1"><a href="#">Relson Dulux</a></h3>
+                                    <p class="mb-2">Hello, We’re content writer who is fascinated by content fashion, celebrity and lifestyle. We helps clients bring the right content to the right people.</p>
+                                    <div class="header-social">
+                                        <ul>
+                                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sidebar-item mb-4">
+                            <h4 class="">All Categories</h4>
+                            <ul class="sidebar-category">
+                                <li><a href="#">All</a></li>
+                                <li><a href="#">Detail</a></li>
+                                <li><a href="#">Comment</a></li>
+                                <li><a href="#">Blogs Offers</a></li>
+                            </ul>
+                        </div>
+
+                        
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- blog Ends -->
+
