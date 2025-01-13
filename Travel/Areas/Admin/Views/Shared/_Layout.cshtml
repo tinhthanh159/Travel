@@ -236,9 +236,15 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/Admin/TbBlogs" class="nav-link">
+                                    <a href="/Admin/TbBlogs" class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "TbBlogs" ? "active" : "")">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Dashboard v3</p>
+                                        <p>Quản lý blog</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Admin/AdminUsers" class="nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "AdminUsers" ? "active" : "")">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Quản lý tài khoản</p>
                                     </a>
                                 </li>
                             </ul>

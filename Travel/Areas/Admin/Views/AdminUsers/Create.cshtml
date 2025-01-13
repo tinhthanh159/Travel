@@ -1,6 +1,5 @@
 ﻿@using Travel.Areas.Admin.Models﻿
-@model Travel.Models.TbBlog
-
+@model Travel.Models.TbAdminUser
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -12,7 +11,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Thêm sản phẩm</h1>
+                    <h1>Thêm tài khoản</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -33,45 +32,31 @@
                     <!-- general form elements -->
                     <div class="card card-primary" style="width: 1550px;">
                         <div class="card-header" style="width: 1550px;">
-                            <h3 class="card-title">Thêm blog</h3>
+                            <h3 class="card-title">Thêm tài khoản</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
                         <form asp-action="Create">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="form-group" style="width: 1500px; margin-left: 20px;">
-                                <label asp-for="Title" class="control-label">Tiêu đề</label>
-                                <input asp-for="Title" class="form-control" />
-                                <span asp-validation-for="Title" class="text-danger"></span>
+                                <label asp-for="UserName" class="control-label">Tên</label>
+                                <input asp-for="UserName" class="form-control" />
+                                <span asp-validation-for="UserName" class="text-danger"></span>
                             </div>
                             <div class="form-group" style="width: 1500px; margin-left: 20px;">
-                                <label asp-for="Description" class="control-label">Mô tả</label>
-                                <input asp-for="Description" class="form-control" />
-                                <span asp-validation-for="Description" class="text-danger"></span>
+                                <label asp-for="Email" class="control-label">Email</label>
+                                <input asp-for="Email" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
                             </div>
+
                             
-                            <div class="form-group" style="width: 1500px; margin-left: 20px;">
-                                <label asp-for="Image" class="control-label">Ảnh</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <button type="button" class="btn btn-success" onclick="openDialog()">Choose a picture</button>
-                                    </div>
-                                    <input type="text" class="form-control" id="file_input" asp-for="Image" aria-describedby="button-addon2">
-                                </div>
-                                <span asp-validation-for="Image" class="text-danger"></span>
-                            </div>
-                           
                             <div class="form-group " style="width: 1500px; margin-left: 20px;">
-                                <label asp-for="Detail" class="control-label">Chi tiết</label>
-                                <textarea asp-for="Detail" class="form-control"></textarea>
-                                <span asp-validation-for="Detail" class="text-danger"></span>
+                                <label asp-for="Password" class="control-label">Mật khẩu</label>
+                                <textarea asp-for="Password" class="form-control"></textarea>
+                                <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
+
                             
-                            <div class="form-group form-check" style="width: 1500px; margin-left: 20px;">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" asp-for="IsActive" /> Hiện
-                                </label>
-                            </div>
                             <div class="form-group" style="width: 1500px; margin-left: 20px;">
                                 <input type="submit" value="Thêm mới" class="btn btn-primary" />
                                 <a asp-action="Index" class="btn btn-primary">Quay lại</a>

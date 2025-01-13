@@ -1,4 +1,4 @@
-﻿@model Travel.Models.TbBlog
+﻿@model Travel.Models.TbAdminUser
 
 @{
     ViewData["Title"] = "Delete";
@@ -11,7 +11,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Xóa blog</h1>
+                    <h1>Xóa tài khoản</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -32,35 +32,28 @@
                     <!-- general form elements -->
                     <div class="card card-primary" style="width: 1550px;">
                         <div class="card-header" style="width: 1550px;">
-                            <h3 class="card-title"> Xóa Blog</h3>
+                            <h3 class="card-title"> Xóa tài khoản</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tiêu đề:</label>
-                                @Html.DisplayFor(model => model.Title)
+                                <label for="exampleInputEmail1">Tên:</label>
+                                @Html.DisplayFor(model => model.UserName)
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Mô tả:</label>
-                                @Html.DisplayFor(model => model.Description)
+                                <label for="exampleInputEmail1">Email:</label>
+                                @Html.DisplayFor(model => model.Email)
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Chi tiết:</label>
-                                <textarea asp-for="Detail" class="form-control"></textarea>
+                                <label for="exampleInputEmail1">Mật khẩu::</label>
+                                <textarea asp-for="Password" class="form-control"></textarea>
 
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Ảnh:</label>
-                                <img src="@Html.DisplayFor(modelItem => modelItem.Image)" width="50" hight="50" />
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Hiện:</label>
-                                @Html.DisplayFor(model => model.IsActive)
-                            </div>
+                           
+                         
                             <form asp-action="Delete">
-                                <input type="hidden" asp-for="BlogId" />
+                                <input type="hidden" asp-for="UserId" />
                                 <input type="submit" value="Xóa" class="btn btn-danger" />
                                 <a asp-action="Index" class="btn btn-primary">Quay lại</a>
                             </form>
